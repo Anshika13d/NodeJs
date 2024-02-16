@@ -1,0 +1,17 @@
+Client(rqst) ->  "Event queue" holds all the requests coming from the client in a queue
+                 |
+                 "Event loop" handles the requests
+                 | 
+                 Request are of two types 
+                        - "blocking" 
+                        - "non blocking"
+                    - Non blocking rqsts are executed easily and directly sends the response to the user after processing it
+
+                    - blocking rqsts Go to the thread pool and it needs a thread to be assigned to it so that it can process the rqst and give back the response
+                    - there is less scalability in blocking rqsts because there are only 4 threads (by default) available so it will be difficult to manage all the request because when one thread will get over another one will start
+                    - but also you can increase the size of these default threads and it depends from machine to machine 
+                    - it depends on the number of CPU cores in the server when you bought that server
+                    - maximum that many threads you can have
+
+
+So its a good practice to write non blocking rqsts
