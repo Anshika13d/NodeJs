@@ -1,0 +1,5 @@
+show dbs
+use <db_name>
+show collections
+db.coll.find()
+db.coll.insert()

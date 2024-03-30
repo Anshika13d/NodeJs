@@ -31,8 +31,8 @@ const fs = require('fs')
 //console.log(fs.statSync('./note.txt'))
 
 
-//to make directories
-//fs.mkdirSync('my-docss/a/b', {recursive: true});
+// to make directories
+// fs.mkdirSync('my-docss/a/b', {recursive: true});
 
 
 //to see the number of cpu cores you havve in your os and which will tell the max number of threads you can have
