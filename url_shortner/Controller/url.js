@@ -1,4 +1,4 @@
-const shortid = require('shortid')
+const shortid = require("shortid");
 const URL = require('../Model/url')
 
 async function handleGenerateNewShortUrl(req, res){
