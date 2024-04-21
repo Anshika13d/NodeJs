@@ -1,9 +1,13 @@
 const express = require('express')
-const urlRoute = require('./router/url')
-const { connectToMongoDB } = require('./connect');
-const URL = require('./Model/url')
 const path = require('path')
+const cookieParser = require('cookie-parser');
+const { connectToMongoDB } = require('./connect');
+const {restrictedToLoggedInUserOnly, checkAuth} = require('./middleware/auth')
+const URL = require('./Model/url')
+
+const urlRoute = require('./router/url')
 const staticRoute = require('./router/staticRouter')
+const userRoute = require('./router/user');
 
 const app = express();
 const PORT = 8003;
@@ -15,13 +19,15 @@ app.set('views', path.resolve('./View'))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-app.use("/url", urlRoute)
-app.use('/', staticRoute)
+app.use("/url", restrictedToLoggedInUserOnly, urlRoute)
+app.use('/user', userRoute)
+app.use('/', checkAuth, staticRoute)
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
+// app.get('/', (req, res) => {
+//     res.render('home')
+// })
 
 
 
